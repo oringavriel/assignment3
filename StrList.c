@@ -97,7 +97,6 @@ void StrList_insertAt(StrList* StrList, const char* data,int index) {
    
 
 
-
 char* StrList_firstData(const StrList* StrList) {
     return StrList->_head->_s;
 }
