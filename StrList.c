@@ -105,10 +105,11 @@ char* StrList_firstData(const StrList* StrList) {
 
 void StrList_print(const StrList* StrList) {
     Node* p= StrList->_head;
-while(p) {
+while(p->_next) {
 printf("%s ",p->_s);
 p= p->_next;
 }
+printf("%s",p->_s);
 printf("\n");
 }
 
