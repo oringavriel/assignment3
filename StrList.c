@@ -104,7 +104,10 @@ char* StrList_firstData(const StrList* StrList) {
 
 
 void StrList_print(const StrList* StrList) {
-    Node* p= StrList->_head;
+
+if (StrList==NULL){ return ; }
+
+Node* p= StrList->_head;
 while(p->_next) {
 printf("%s ",p->_s);
 p= p->_next;
@@ -136,6 +139,8 @@ void StrList_printAt(const StrList* Strlist,int index) {
 }
 
 int StrList_printLen(const StrList* Strlist){
+
+
      Node* p= Strlist->_head;
        int count=0;
             while (p) {
@@ -147,6 +152,7 @@ int StrList_printLen(const StrList* Strlist){
 }
 
 int StrList_count(StrList* StrList, const char* data) {
+    
      Node* p= StrList->_head;
      int count=0;
      while (p) {
@@ -159,6 +165,7 @@ int StrList_count(StrList* StrList, const char* data) {
 }
 
 void StrList_remove(StrList* StrList, const char* data){
+    if (StrList==NULL){ return ; }
     if ( strcmp(StrList->_head->_s, data)==0) {
          Node* p= StrList->_head-> _next;
          free(StrList->_head->_s);
@@ -195,7 +202,8 @@ void StrList_remove(StrList* StrList, const char* data){
 }
 
 void StrList_removeAt(StrList* StrList, int index){
-     if (StrList->_head==NULL || StrList->_size-1 < index ) {
+   
+    if (StrList->_head==NULL || StrList->_size-1 < index ) {
         return;
         }
     else if (index==0) {
@@ -286,9 +294,9 @@ void StrList_reverse( StrList* StrList){
 }
 
 void swapNodes(Node* p,Node* p1 ){
-     char* temp=p->_s;
-     p->_s=p1->_s;      
-     p1->_s=temp;
+    char* temp=p->_s;
+    p->_s=p1->_s;      
+    p1->_s=temp;
    
 }
 
