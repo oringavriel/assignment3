@@ -108,6 +108,7 @@ while(p->_next) {
 printf("%s ",p->_s);
 p= p->_next;
 }
+
 printf("%s",p->_s);
 printf("\n");
 }
