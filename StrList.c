@@ -120,7 +120,7 @@ void StrList_print(const StrList* StrList) {
 }
 
 void StrList_printAt(const StrList* Strlist,int index) {
-     if (Strlist->_head==NULL || Strlist->_size -1 < index  || Strlist->_size  > index) {
+     if (Strlist->_head==NULL || Strlist->_size -1 < index  || 0 > index) {
         return;
         }
     else if (index==0) {
