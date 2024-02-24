@@ -36,16 +36,16 @@ return p;
 }
 
 void StrList_free(StrList* StrList) {
-    if (StrList==NULL){ return; }
-Node* p1= StrList->_head;
-Node* p2;
-while(p1) {
-p2= p1;
-p1= p1->_next;
-free(p2->_s);
-free(p2);
-}
-free(StrList);
+    if (StrList->_head==NULL){ return ; }
+        Node* p1= StrList->_head;
+        Node* p2;
+        while(p1) {
+            p2= p1;
+            p1= p1->_next;
+            free(p2->_s);
+            free(p2);
+        }
+    free(StrList);
 }
 
 size_t StrList_size(const StrList* StrList) {
@@ -57,13 +57,13 @@ void StrList_insertLast(StrList* StrList, const char* data) {
         StrList->_head = Node_alloc(data,NULL);
         }
     else {
-    Node* p= StrList->_head;
-    while ((p->_next)!=NULL) {
-        p=p->_next;
-    }
+        Node* p= StrList->_head;
+        while ((p->_next)!=NULL) {
+            p=p->_next;
+        }
     p->_next = Node_alloc(data,NULL);
-}
-        StrList->_size++;
+    }
+    StrList->_size++;
 }
 
 void StrList_insertAt(StrList* StrList, const char* data,int index) {
@@ -80,21 +80,21 @@ void StrList_insertAt(StrList* StrList, const char* data,int index) {
     else {
         Node* p= StrList->_head;
         Node* prev= StrList->_head;
-            int count=0;
-            while ((p->_next)!=NULL) {
-                prev=p;
-                p= p->_next;
-                count++;
-                if (count==index) {
-                    break;
+        int count=0;
+        while ((p->_next)!=NULL) {
+            prev=p;
+            p= p->_next;
+            count++;
+            if (count==index) {
+                break;
                    
-                }
             }
-            p= Node_alloc(data, p);
-            prev->_next= p;
-           StrList->_size++;
         }
+        p= Node_alloc(data, p);
+        prev->_next= p;
+        StrList->_size++;
     }
+}
    
 
 
@@ -104,21 +104,23 @@ char* StrList_firstData(const StrList* StrList) {
 
 
 void StrList_print(const StrList* StrList) {
+    if (StrList->_head== NULL){
+        printf("\n");
+        return ;
+    }
 
-if (StrList==NULL){ return ; }
+    Node* p= StrList->_head;
+    while(p->_next) {
+    printf("%s ",p->_s);
+    p= p->_next;
+    }
 
-Node* p= StrList->_head;
-while(p->_next) {
-printf("%s ",p->_s);
-p= p->_next;
-}
-
-printf("%s",p->_s);
-printf("\n");
+    printf("%s",p->_s);
+    printf("\n");
 }
 
 void StrList_printAt(const StrList* Strlist,int index) {
-     if (Strlist->_head==NULL || Strlist->_size -1 < index ) {
+     if (Strlist->_head==NULL || Strlist->_size -1 < index  || Strlist->_size  > index) {
         return;
         }
     else if (index==0) {
@@ -346,6 +348,9 @@ int StrList_isSorted(StrList* StrList){
 	
 
 int liStrList_size (StrList* StrList){
+    if(StrList==NULL){
+        return 0;
+    }
     return StrList->_size;
 }
 

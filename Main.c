@@ -77,6 +77,7 @@ while(1){
 
     else if(choose==11){
     StrList_free(list);
+    list= StrList_alloc();
 
     }
 
@@ -99,7 +100,7 @@ while(1){
     }
 }
 
-StrList_free(list); 
+    StrList_free(list); 
 
 
 }
