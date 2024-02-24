@@ -42,6 +42,7 @@ Node* p2;
 while(p1) {
 p2= p1;
 p1= p1->_next;
+free(p2->_s);
 free(p2);
 }
 free(StrList);
@@ -160,6 +161,7 @@ int StrList_count(StrList* StrList, const char* data) {
 void StrList_remove(StrList* StrList, const char* data){
     if ( strcmp(StrList->_head->_s, data)==0) {
          Node* p= StrList->_head-> _next;
+         free(StrList->_head->_s);
          free(StrList->_head);
          StrList->_head= p;
          StrList->_size--;
@@ -169,6 +171,7 @@ void StrList_remove(StrList* StrList, const char* data){
     Node* temp= p->_next;
     while ((p->_next)!=NULL) {
         if (strcmp(p->_s, data)==0){
+            free(p->_s);
             free(p);
             prev->_next=temp;
             p=temp;
@@ -182,6 +185,7 @@ void StrList_remove(StrList* StrList, const char* data){
         }
     }
     if ( strcmp(p->_s, data)==0) {
+        free(p->_s);
         free(p);
         prev->_next=NULL;
         StrList->_size--;
@@ -196,6 +200,7 @@ void StrList_removeAt(StrList* StrList, int index){
         }
     else if (index==0) {
          Node* p= StrList->_head-> _next;
+         free(StrList->_head->_s); 
          free(StrList->_head);
          StrList->_head= p;
          StrList->_size--;
@@ -217,11 +222,13 @@ void StrList_removeAt(StrList* StrList, int index){
         }
     }
         if (index== StrList->_size-1) {
+            free(p->_s);
             free(p);
             prev->_next=NULL;
             StrList->_size--;
         }
         else {
+            free(p->_s);
             free(p);
             prev->_next=temp;
             p=temp;

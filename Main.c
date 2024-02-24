@@ -99,7 +99,7 @@ while(1){
     }
 }
 
-
+StrList_free(list); 
 
 
 }
